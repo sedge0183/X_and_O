@@ -10,11 +10,34 @@ def start():
 
 	return(player_x, player_o)
 
+
+def printboard(board):
+	print('{}|{}|{}'.format(board[0], board[1], board[2]))
+	print('-|-|-')
+	print('{}|{}|{}'.format(board[3], board[4], board[5]))
+	print('-|-|-')
+	print('{}|{}|{}'.format(board[6], board[7], board[8]))
+
+
 def main():
-	player_x, player_o = start()
+	players = start()
+	board = [number for number in range(1, 10)]
+	turn = 0
+	result = None
+	draw = False
+
+	print(board)
+	while result == None and draw == False:
+		printboard(board)
+		print()
+		
+		print("{}'s turn. Please choose an availible position.".format(players[turn]))
+		
+
+		turn = 1 - turn		
 
 
-	
+		result = True
 
 if __name__ == '__main__':
 	main()
@@ -22,8 +45,8 @@ if __name__ == '__main__':
 
 # names
 # while the game is not over:
-#	player move
 #	print board
+#	player move
 #	check for win
 
-# print result
+# print result, board
