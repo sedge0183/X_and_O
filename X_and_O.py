@@ -19,25 +19,45 @@ def printboard(board):
 	print('{}|{}|{}'.format(board[6], board[7], board[8]))
 
 
+def playermove(board, sign):
+	while 1 != 0:
+		number = (sys.stdin.readline()).strip()
+		print()
+		try:
+			number = int(number)
+			position = number - 1
+			try:
+				if str(board[position]).isnumeric():
+					board[position] = sign
+					return(board)
+					
+				else:
+					print('That position has already been taken. Please select another.')
+				
+			except IndexError:
+				print("{} is not a vaild position. eeey Please select another".format(number))
+		except ValueError:
+			print("'{}' is not a number. Please select a valid position".format(number))
+
 def main():
 	players = start()
+	sign = ['X', 'O']
 	board = [number for number in range(1, 10)]
 	turn = 0
 	result = None
 	draw = False
 
-	print(board)
 	while result == None and draw == False:
 		printboard(board)
 		print()
 		
 		print("{}'s turn. Please choose an availible position.".format(players[turn]))
-		
-
+		 
+		playermove(board, sign[turn])
 		turn = 1 - turn		
 
 
-		result = True
+		
 
 if __name__ == '__main__':
 	main()
