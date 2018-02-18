@@ -6,18 +6,25 @@ def start():
 	print("{} is X's and will go first\n".format(player_x))
 	print('Please enter the name of player 2:')
 	player_o = (sys.stdin.readline()).strip()
+	while player_o == player_x:
+		print()
+		print('Cannot choose the same name as player 1. Please choose again.')
+		player_o = (sys.stdin.readline()).strip()
 	print("{} is O's and will go second\n".format(player_o))
 
 	return[player_x, player_o]
 
 
 def printboard(board):
-	print('{}|{}|{}'.format(board[0], board[1], board[2]))
-	print('-|-|-')
-	print('{}|{}|{}'.format(board[3], board[4], board[5]))
-	print('-|-|-')
-	print('{}|{}|{}'.format(board[6], board[7], board[8]))
-	print()
+	print('   |   |   ')
+	print(' {} | {} | {} '.format(board[0], board[1], board[2]))
+	print('___|___|___')
+	print('   |   |   ')
+	print(' {} | {} | {} '.format(board[3], board[4], board[5]))
+	print('___|___|___')
+	print('   |   |   ')
+	print(' {} | {} | {} '.format(board[6], board[7], board[8]))
+	print('   |   |   \n')
 
 
 def playermove(board, sign):
@@ -26,19 +33,17 @@ def playermove(board, sign):
 		print()
 		try:
 			number = int(number)
-			position = number - 1
-			try:
+			if 1 <= number <= 9:
+				position = number - 1
 				if str(board[position]).isnumeric():
 					board[position] = sign
 					return(board)
-					
 				else:
-					print('That position has already been taken. Please select another.')
-				
-			except IndexError:
-				print("{} is not a vaild position. Please select another".format(number))
+					print('That position has already been taken. Please choose another.')
+			else:
+				print('{} is not a valid position. Pleas choose another.'.format(number))
 		except ValueError:
-			print("'{}' is not a number. Please select a valid position".format(number))
+			print("'{}' is not a valid number. Please select a valid position.".format(number))
 
 
 def check(b):
@@ -108,4 +113,4 @@ if __name__ == '__main__':
 #	player move
 #	check for win, draw
 
-# print result, boardm
+# print result, board
